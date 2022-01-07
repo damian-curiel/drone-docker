@@ -2,13 +2,12 @@ kind: pipeline
 type: docker
 name: Damian Pipe
 steps:
+  image: golang:1.12
+  commands:
+  - go build
+  - go test
 - name: maven_test
   image: maven:3-jdk-10
   commands:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
   - mvn test -B
-- name: greeting golang step
-  image: golang:1.12
-  commands:
-  - go build
-  - go test
