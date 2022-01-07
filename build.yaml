@@ -3,7 +3,7 @@ type: docker
 name: default
 
 steps:
-- name: maven_test
+- name: maven_test_pr
   image: maven:3-jdk-10
   commands:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
