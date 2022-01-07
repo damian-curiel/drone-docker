@@ -1,0 +1,20 @@
+#YAML simple de construcción
+
+
+kind: pipeline
+type: docker
+name: Damian Pipe
+steps:
+- name: Maven Build
+  image: maven:3-jdk-10
+  commands:
+  - mvn -B -DskipTests clean package
+  - mvn test
+-name: Push a Docker Registry
+  image: plugins/docker
+  settings:
+    username: fcuriel
+    password:
+      from_secret: docker_pwd_damian
+    auto_tag: true
+    auto_tag_suffix: drone-build

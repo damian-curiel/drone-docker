@@ -1,9 +1,0 @@
-kind: pipeline
-type: docker
-name: Damian Pipe
-steps:
-- name: maven_test
-  image: maven:3-jdk-10
-  commands:
-  - mvn -B -DskipTests clean package
-  - mvn test
