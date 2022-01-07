@@ -10,7 +10,7 @@ steps:
   commands:
   - mvn -B -DskipTests clean package
   - mvn test
--name: Push a Docker Registry
+- name: Push a Docker Registry
   image: plugins/docker
   settings:
     username: fcuriel
