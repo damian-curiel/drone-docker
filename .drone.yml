@@ -7,7 +7,7 @@ steps:
   commands:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
   - mvn test -B
-- name: greeting golang
+- name: greeting golang step
   image: golang:1.12
   commands:
   - go build
