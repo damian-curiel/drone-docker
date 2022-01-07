@@ -10,6 +10,7 @@ steps:
   commands:
   - mvn -B -DskipTests clean package
   - mvn test
+#Dockerfile y app se toma de app basada en go
 - name: Push a Docker Registry
   image: plugins/docker
   settings:
