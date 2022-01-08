@@ -18,4 +18,4 @@ steps:
     password:
       from_secret: docker_pwd_damian
     auto_tag: true
-    auto_tag_suffix: drone-build
+    auto_tag_suffix: DRONE_BUILD_NUMBER
