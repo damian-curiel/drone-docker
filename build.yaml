@@ -14,6 +14,9 @@ steps:
 - name: Push a Docker Registry
   image: plugins/docker
   settings:
+    repo: fcuriel/drone
+    auto_tag: true
     username: fcuriel
     password:
       from_secret: docker_pwd_damian
+    dry_run: true
