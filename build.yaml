@@ -7,9 +7,6 @@ name: Prueba para clip
 steps:
 - name: maven build with dind
   image: quay.io/testcontainers/dind-drone-plugin
-  commands:
-  - sleep 7
-  - docker ps -a
   environment:
     CI_WORKSPACE: "/drone/src"
   settings:
