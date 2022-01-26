@@ -5,14 +5,16 @@ kind: pipeline
 type: docker
 name: Prueba para clip
 steps:
-- name: test
-  image: docker:dind
+- name: maven build with dind
+  image: maven:3-jdk-10
   volumes:
   - name: dockersock
     path: /var/run
   commands:
   - sleep 15 # give docker enough time to start
+  - mvn -B -DskipTests clean package
   - docker ps -a
+  - mvn test
 #Dockerfile y app se toma de app basada en go
 - name: Push a Docker Registry
   image: plugins/docker
@@ -29,6 +31,7 @@ services:
   volumes:
   - name: dockersock
     path: /var/run
+
 volumes:
 - name: dockersock
   temp: {}
