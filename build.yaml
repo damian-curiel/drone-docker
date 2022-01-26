@@ -12,19 +12,7 @@ steps:
   settings:
     build_image: maven:3-jdk-10
     cmd: sleep 15 && docker ps && mvn -B -DskipTests clean package && mvn test
-  volumes:
-  - name: dockersock
-    path: /var/run
-
-#Dockerfile y app se toma de app basada en go
-- name: Push a Docker Registry
-  image: plugins/docker
-  settings:
-    repo: fcuriel/drone
-    auto_tag: true
-    username: fcuriel
-    password:
-      from_secret: docker_pwd_damian
+    
 services:
 - name: docker
   image: docker:dind
