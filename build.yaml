@@ -8,9 +8,9 @@ steps:
 - name: Maven Build
   image: maven:3-jdk-10
   commands:
-  - sleep 7
-  - docker ps -a
+  - sleep 10
   - mvn -B -DskipTests clean package
+  - docker ps -a
   - mvn test
 #Dockerfile y app se toma de app basada en go
 - name: Push a Docker Registry
@@ -24,7 +24,7 @@ steps:
 services:
 - name: docker
   image: docker:dind
- # privileged: true
+  privileged: true
   volumes:
   - name: dockersock
     path: /var/run
