@@ -3,7 +3,7 @@
 
 kind: pipeline
 type: docker
-name: POC Service Guinea
+name: Prueba para clip
 steps:
 - name: Maven Build
   image: maven:3-jdk-10
