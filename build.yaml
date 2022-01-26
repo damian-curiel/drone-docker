@@ -5,19 +5,14 @@ kind: pipeline
 type: docker
 name: Prueba para clip
 steps:
-- name: Maven Build
-  image: quay.io/testcontainers/dind-drone-plugin
-  environment:
-    CI_WORKSPACE: "/drone/src"
-  settings:
-      # This specifies the command that should be executed to perform build, test and
-      #  integration tests. Not to be confused with Drone's `command`:
-    cmd: sleep 5 && mvn -B -DskipTests clean package && docker ps -a && mvn test
-      # This image will run the cmd with your build steps
-    build_image: maven:3-jdk-10
+- name: test
+  image: docker:dind
   volumes:
-      - name: dockersock
-        path: /var/run
+  - name: dockersock
+    path: /var/run
+  commands:
+  - sleep 15 # give docker enough time to start
+  - docker ps -a
 #Dockerfile y app se toma de app basada en go
 - name: Push a Docker Registry
   image: plugins/docker
@@ -34,7 +29,6 @@ services:
   volumes:
   - name: dockersock
     path: /var/run
-
 volumes:
 - name: dockersock
   temp: {}
