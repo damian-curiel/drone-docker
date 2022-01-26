@@ -3,11 +3,13 @@
 
 kind: pipeline
 type: docker
-name: Damian Pipe
+name: POC Service Guinea
 steps:
 - name: Maven Build
   image: maven:3-jdk-10
   commands:
+  - sleep 7
+  - docker ps -a
   - mvn -B -DskipTests clean package
   - mvn test
 #Dockerfile y app se toma de app basada en go
@@ -19,3 +21,14 @@ steps:
     username: fcuriel
     password:
       from_secret: docker_pwd_damian
+services:
+- name: docker
+  image: docker:dind
+  privileged: true
+  volumes:
+  - name: dockersock
+    path: /var/run
+
+volumes:
+- name: dockersock
+  temp: {}
