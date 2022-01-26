@@ -6,15 +6,16 @@ type: docker
 name: Prueba para clip
 steps:
 - name: maven build with dind
-  image: maven:3-jdk-10
+  image: quay.io/testcontainers/dind-drone-plugin
+    environment:
+      CI_WORKSPACE: "/drone/src"
+    settings:
+      build_image: maven:3-jdk-10
+      cmd: sleep 15 && docker ps && mvn -B -DskipTests clean package && mvn test
   volumes:
   - name: dockersock
     path: /var/run
-  commands:
-  - sleep 15 # give docker enough time to start
-  - mvn -B -DskipTests clean package
-  - docker ps -a
-  - mvn test
+    
 #Dockerfile y app se toma de app basada en go
 - name: Push a Docker Registry
   image: plugins/docker
