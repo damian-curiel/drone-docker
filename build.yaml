@@ -16,7 +16,7 @@ steps:
   - name: dockersock
     path: /var/run
 
-#Dockerfile y app se toma de app basada en go
+#Dockerfile y app se toma de app basada en go.
 - name: Push a Docker Registry
   image: plugins/docker
   settings:
